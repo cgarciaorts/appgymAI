@@ -1,0 +1,2 @@
+# appgymAI
+Aplicacion gimnasio IA
