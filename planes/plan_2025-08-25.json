@@ -1,0 +1,1341 @@
+{
+  "Lunes": {
+    "dia": "Lunes",
+    "meta": {
+      "titulo": "Upper: Pecho/Espalda + Espalda/Hombro + Cinta"
+    },
+    "bloques": [
+      {
+        "tipo": "Calentamiento Torso",
+        "items": [
+          {
+            "id": 2,
+            "ejercicio": "Foot core",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=RQnYDWkN3ms&list=PLG4UgkMp0opjLv-MP1ulx33gaH3hNes2U&index=2",
+            "explicacion": "Este ejercicio consiste en intentar hacer con el pie una ventosa en el suelo, los dedos del pie y talón de acercan .",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 3,
+            "ejercicio": "Foot core (con foco externo)",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=J1PXoBVQUxw",
+            "explicacion": "Objetivo: Intentar apretar o acercar los dedos al talón sin que se escape la goma.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 65,
+            "ejercicio": "RNT Extensión torácica OHS (posición de Y griega)",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=n0LJpZC8_d8",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "FLEXIÓN / EXTENSIÓN",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 66,
+            "ejercicio": "Rotación torácica con APP fuerza + estiramiento dinámico add",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=tcA32UXLyrs",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "FLEXIÓN / EXTENSIÓN",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Potencia (Torso) / Bloque Pesado",
+        "items": [
+          {
+            "id": 615,
+            "ejercicio": "Press banca unilateral",
+            "series": 3,
+            "repeticiones": "4-6",
+            "video": "https://www.youtube.com/watch?v=42B2-e0SWxs",
+            "explicacion": "Retraer escápula antes de empezar y subir lo más rápido posible, codos ligeramente hacia dentro.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "EMPUJES",
+            "subcategoria": "KB/ MANCUERNA",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 12,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 1003,
+            "ejercicio": "Retracción escapular +  dominada asistida",
+            "series": 3,
+            "repeticiones": "4-6",
+            "video": "https://www.youtube.com/watch?v=iBfuJVYDELU",
+            "explicacion": "Busca encajar 4 - 5 veces la escápula como en el vídeo notando que se activa, después haces la dominada.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "TIRÓN",
+            "subcategoria": "VERTICAL",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 12,
+            "RPE": 7,
+            "descanso": 90,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito A: Empuje horizontal + Tracción horizontal",
+        "items": [
+          {
+            "id": 572,
+            "ejercicio": "Flexiones incluyendo la retracción aprendizaje",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=XSnC20jH90Y",
+            "explicacion": "Objetivo: Bajar controlado y subir rápido.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": " EMPUJES",
+            "subcategoria": "EMPUJES HORIZONTALES ",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 831,
+            "ejercicio": "Flexiones + tracción con mancuerna",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=1Mb3hjGv_Ik",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CORE",
+            "subcategoria": "ANTI-EXT-FLEX",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito B: Empuje diagonal/vertical + Tracción vertical/ligera",
+        "items": [
+          {
+            "id": 82,
+            "ejercicio": "Zancada lateral en landmine",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=ZLbgDxcJeXk",
+            "explicacion": "Buscar ir con el culete hacia atrás buscando tirantez en los aductores.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ADUCTORES",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 1964,
+            "ejercicio": "Bear crawl + tracción o add",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=Uk9AnOjrs7w",
+            "explicacion": "Objetivo: Buscamos traccionar sin que se hunda la cadera.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CALISTENIA",
+            "subcategoria": "TRACCIONES",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Caminar en cinta",
+        "plan": {
+          "tipo": "Caminar en cinta",
+          "duracion_min": 12,
+          "inclinacion": "3–6%",
+          "ritmo_kmh": "5.0–5.6 km/h",
+          "instrucciones": "Postura erguida, braceo natural. Mantén conversación cómoda."
+        }
+      }
+    ]
+  },
+  "Martes": {
+    "dia": "Martes",
+    "meta": {
+      "titulo": "Pierna: Dominante de Rodilla Pesado + Accesorios + Core"
+    },
+    "bloques": [
+      {
+        "tipo": "Calentamiento Pierna",
+        "items": [
+          {
+            "id": 89,
+            "ejercicio": "FNP cadena posterior + flex cadera Contracción iso 5''",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=CC_2UOAcj00",
+            "explicacion": "Buscamos apretar la goma hacia la pared 5'' y relajamos.",
+            "rpe": NaN,
+            "carga utilizada": "No curvar zona lumbar.",
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 1306,
+            "ejercicio": "Movilidad de cadera dinámico",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=2Ku_WeUmXKE",
+            "explicacion": "Busca que no se curve mucho la espalda",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "METABÓLICO CORPORAL",
+            "subcategoria": "METABÓLICO CORPORAL",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 1,
+            "ejercicio": "PROTOCOLO FOAM ROLLER",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=M8bggu5q0SM&t=29s",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "PROTOCOLO DE FOAM ROLLER y movilidad de tobillo",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 4,
+            "ejercicio": "Disociación de dedos",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": NaN,
+            "explicacion": "Objetivo: Levantar los dedos sin que se levante el dedo gordo. Y al revés.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Bloque Pesado Rodilla",
+        "items": [
+          {
+            "id": 67,
+            "ejercicio": "Sentadilla en trx",
+            "series": 3,
+            "repeticiones": "3-6",
+            "video": "https://www.youtube.com/watch?v=kspF-029we4",
+            "explicacion": "Buscamos echar el peso en un talón y en otro.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "FLEXIÓN / EXTENSIÓN",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 12,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 841,
+            "ejercicio": "Bear crawl + tracción o add",
+            "series": 3,
+            "repeticiones": "3-6",
+            "video": "https://www.youtube.com/watch?v=Uk9AnOjrs7w",
+            "explicacion": "Objetivo: Buscamos traccionar sin que se hunda la cadera.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CORE",
+            "subcategoria": "ANTI-EXT-FLEX",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 8,
+            "descanso": 120,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito A: D. rodilla + D. cadera",
+        "items": [
+          {
+            "id": 31,
+            "ejercicio": "Zancada énfasis dorsiflexión",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=gH94_iDbbtI",
+            "explicacion": "Buscar ir con la rodilla lo más adelante posible.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 90,
+            "ejercicio": "Puente de isquio excéntrico",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=6i1ir1KWqKs",
+            "explicacion": "Nos ponemos la goma en el talón (que nos tire bastante y nos cueste mantener la posición) y bajamos lentamente.",
+            "rpe": "A mayor velocidad de bajada y frenar bruscamente, más intenso.",
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Accesorios Pierna / Finisher (opcional)",
+        "items": [
+          {
+            "id": 953,
+            "ejercicio": "Extensiones lumbares en suelo",
+            "series": 2,
+            "repeticiones": "10-15",
+            "video": "https://www.youtube.com/watch?v=L21tgx_yw5s",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CORE",
+            "subcategoria": "GLOBAL/ TRANSMITIR FUERZAS",
+            "tipo_ejercicio": "Aislamiento",
+            "prioridad": 3,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 92,
+            "ejercicio": "Curl Jefferson",
+            "series": 2,
+            "repeticiones": "10-15",
+            "video": "https://www.youtube.com/watch?v=Fp2QQfBp7os",
+            "explicacion": "Bajar hasta donde la molestia sea menor a un 3/10.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Aislamiento",
+            "prioridad": 3,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 45,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      }
+    ]
+  },
+  "Miércoles": {
+    "dia": "Miércoles",
+    "meta": {
+      "titulo": "Tracciones: Espalda/Bíceps + Movilidad cadera (compensatorio)"
+    },
+    "bloques": [
+      {
+        "tipo": "Calentamiento Torso",
+        "items": [
+          {
+            "id": 74,
+            "ejercicio": "Búlgara y rotación torácica.",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=yS9TRwko6yg",
+            "explicacion": "Aguantar arriba 3'' apretando el glúteo' y en el máximo recorrido de rotación torácica.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "CUÁDRICEPS",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 109,
+            "ejercicio": "Cat-camel",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=r1hgjllG6Fw",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD TORÁCICA ",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 110,
+            "ejercicio": "Cat-camel con banda",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=dfBAbCHM5PE",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD TORÁCICA ",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 111,
+            "ejercicio": "Extensión torácica",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=WjUNAhrGHO4",
+            "explicacion": "Coger aire cuando nos estiramos y permanecer 3-5'' en la última fase.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD TORÁCICA ",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Potencia (Torso) / Bloque Pesado Tracción",
+        "items": [
+          {
+            "id": 1973,
+            "ejercicio": "Semi dominada",
+            "series": 3,
+            "repeticiones": "3-6",
+            "video": "https://www.youtube.com/watch?v=iGubGpZGHqQ",
+            "explicacion": "Buscamos hacer toda la fuerza con los brazos, buscando quitarle peso a las piernas.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CALISTENIA",
+            "subcategoria": "TRACCIONES",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 12,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 16,
+            "ejercicio": "Flexion dorsal con mb",
+            "series": 3,
+            "repeticiones": "3-6",
+            "video": "https://www.youtube.com/watch?v=pYKhqT2B0fI",
+            "explicacion": "Objetivo: Llegar con el pie lo más arriba posible.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito A: Tracción diagonal + Core/Salto",
+        "items": [
+          {
+            "id": 641,
+            "ejercicio": "Press diagonal en posición split",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=qG4GL-I13PA",
+            "explicacion": "Objetivo: Empujar contra la jaula/ rack y mantener la posición de zancada.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "EMPUJES",
+            "subcategoria": "KB/ MANCUERNA",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 860,
+            "ejercicio": "Plancha + tracción",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=KCivSeg35b4",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CORE",
+            "subcategoria": "ANTI-ROTACIÓN",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito B: Tracción horizontal + vertical ligera",
+        "items": [
+          {
+            "id": 192,
+            "ejercicio": "Remo en polea (forzando flexión rodilla)",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=eYFj9K2VhAc",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": " MOVILIDAD DE RODILLA",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 1965,
+            "ejercicio": "Remo en trx",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=I6G3JiktEgE",
+            "explicacion": "Llevar los hombros hacia atrás y juntar las escápulas. Mantenernos ligeramente sentados en el aire.",
+            "rpe": NaN,
+            "carga utilizada": "Cuanto más nos inclinemos, más nos cuesta (Buscar la intensidad de un 7-8)",
+            "categoria": "CALISTENIA",
+            "subcategoria": "TRACCIONES",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      }
+    ]
+  },
+  "Jueves": {
+    "dia": "Jueves",
+    "meta": {
+      "titulo": "Pliometría + Intervalos de carrera"
+    },
+    "bloques": [
+      {
+        "tipo": "Calentamiento Pierna",
+        "items": [
+          {
+            "id": 91,
+            "ejercicio": "Swiss leg curl con dos piernas y con una",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=Xmb_HzeFycM",
+            "explicacion": "Objetivo: Aguantar la bajada lo más lento posible.",
+            "rpe": "A mayor velocidad de bajada y frenar bruscamente, más intenso.",
+            "carga utilizada": "El vídeo tiene dos partes, hacer la primera, si lo tolero muy bien, hacer la segunda en la siguiente ronda.",
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Aislamiento",
+            "prioridad": 3,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 5,
+            "ejercicio": "Movilidad dedos del pie junto a dorsiflexión.",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=0N9m9dkaElI",
+            "explicacion": "Apretando el pie como una ventosa, buscamos intentar alcanzar lo máximo posible, sin levantar el talón, aguantar 3-5'' en esa posición.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 6,
+            "ejercicio": "Dorsiflexión de dedos",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=DmxAwYajYJA",
+            "explicacion": "Buscamos movilizar los dedos y estirar la planta del pie, ir a sentarte al culete.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 7,
+            "ejercicio": "Esitarmiento dinámico cadena extensora",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=H8JJM9TAMjM",
+            "explicacion": "Buscamos poner los dedos y la parte de adelante del pie en un disco, corcho o toalla grande, buscando un estiramiento de la cadena posterior.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Pliometría",
+        "items": [
+          {
+            "id": 21,
+            "ejercicio": "Drop jump énfasis movilidad de tobillo",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=KnajpdHrsbg",
+            "explicacion": "Objetivo: Intentar llegar con las rodillas lo más adelante posible sin que se levante el talón",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Pliometrico",
+            "prioridad": 1,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 60,
+            "tempo": ""
+          },
+          {
+            "id": 30,
+            "ejercicio": "Salto horizontales en cuesta",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": NaN,
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Pliometrico",
+            "prioridad": 1,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 60,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Carrera (intervalos)",
+        "plan": {
+          "tipo": "Intervalos",
+          "sesion": "6x400m Z4 rec 2'",
+          "indicaciones": "Calienta 10' + Enfría 10'"
+        }
+      }
+    ]
+  },
+  "Viernes": {
+    "dia": "Viernes",
+    "meta": {
+      "titulo": "Pierna: Dominante de Cadera Pesado + Accesorios + Core"
+    },
+    "bloques": [
+      {
+        "tipo": "Calentamiento Pierna",
+        "items": [
+          {
+            "id": 8,
+            "ejercicio": "Dorsiflexión + estiramiento dinámico aductor.",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=LXSAZN93Yik&list=PLG4UgkMp0opjb0b5Ied_0N-2lJpY6qxLh&index=5",
+            "explicacion": "Objetivo: Llegar lo más adelante posible sin que se levante el talón.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 9,
+            "ejercicio": "Dorsiflexión con carga",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=tMvVEAvtsrs&list=PLG4UgkMp0opjb0b5Ied_0N-2lJpY6qxLh&index=3",
+            "explicacion": "Objetivo: Llegar lo más adelante posible sin que se levante el talón.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 10,
+            "ejercicio": "Dorsiflexión con disco",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=fWIyja-DZFc",
+            "explicacion": "Apretando el pie como una ventosa, buscamos intentar alcanzar lo máximo posible, sin levantar el talón, aguantar 3-5'' en esa posición.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 11,
+            "ejercicio": "Dorsiflexión con banda",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=sf7yFw2FPAg",
+            "explicacion": "Apretando el pie como una ventosa, buscamos intentar alcanzar lo máximo posible, sin levantar el talón, aguantar 3-5'' en esa posición.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Bloque Pesado Cadera",
+        "items": [
+          {
+            "id": 98,
+            "ejercicio": "Peso muerto asimétrico con parada 5''",
+            "series": 3,
+            "repeticiones": "3-6",
+            "video": "https://www.youtube.com/watch?v=rvxJcG71wo4",
+            "explicacion": "Bajar lentamente, notando los isquios y aguantar 5'' abajo donde más nos tiren, subir rápido.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 12,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 294,
+            "ejercicio": "Foot core",
+            "series": 3,
+            "repeticiones": "3-6",
+            "video": "https://www.youtube.com/watch?v=RQnYDWkN3ms&list=PLG4UgkMp0opjLv-MP1ulx33gaH3hNes2U&index=2",
+            "explicacion": "Este ejercicio consiste en intentar hacer con el pie una ventosa en el suelo, los dedos del pie y talón de acercan .",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CORRECTIVO",
+            "subcategoria": "PIE-TOBILLO",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito A: D. cadera + D. rodilla",
+        "items": [
+          {
+            "id": 77,
+            "ejercicio": "Excéntrico aductores",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=paHqwRhcUM4",
+            "explicacion": "Aguantar la bajada 3-5'' buscando ponernos a una distancia que nos cueste resistirla.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ADUCTORES",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 47,
+            "ejercicio": "90/90 + zancada",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=tV_o7B2VNfI",
+            "explicacion": "Aguantar arriba 3'' apretando el glúteo e irnos con el cuerpo hacia atrás (no con la espalda sólo).",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE CADERA",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Accesorios Pierna / Finisher (opcional)",
+        "items": [
+          {
+            "id": 733,
+            "ejercicio": "Curl con goma",
+            "series": 2,
+            "repeticiones": "10-15",
+            "video": "https://www.youtube.com/watch?v=xeAeEQkSLhY",
+            "explicacion": "Tirar con la goma hacia el culete y aguantar unos segundos, bajar lentamente.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "ISQUIOSURALES",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Aislamiento",
+            "prioridad": 3,
+            "__score": 0,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 19,
+            "ejercicio": "Excéntrico gemelos",
+            "series": 2,
+            "repeticiones": "10-15",
+            "video": "https://www.youtube.com/watch?v=Zfd2oEW_lY4&list=PLG4UgkMp0opjb0b5Ied_0N-2lJpY6qxLh&index=4",
+            "explicacion": "Objetivo: Bajar lo más lento posible a tocar con el talón el suelo.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      }
+    ]
+  },
+  "Sábado": {
+    "dia": "Sábado",
+    "meta": {
+      "titulo": "Full Body / Metabólico"
+    },
+    "bloques": [
+      {
+        "tipo": "Calentamiento Mixto",
+        "items": [
+          {
+            "id": 12,
+            "ejercicio": "Squat dorsi",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=UB-8QABWYyQ",
+            "explicacion": "Objetivo: Sin levantar talones, agacharte lo máximo que puedas e ir echando el peso a un lado y otro, buscando tirantez en el gemelo, la parte lateral o en el tobillo.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 13,
+            "ejercicio": "Squat movilidad tobillo",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=6odAuyQbd5M",
+            "explicacion": "Objetivo: Sin levantar talones, agacharte lo máximo que puedas e ir echando el peso a un lado y otro, buscando tirantez en el gemelo, la parte lateral o en el tobillo.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 14,
+            "ejercicio": "Pasos de squat ",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=5BWDcskZzX0",
+            "explicacion": "Buscamos andar, echando todo el peso al tobillo de adelante, sin levantar el talón.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 15,
+            "ejercicio": "Squat profunda 5'' on5'' off",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=m_OvKRJzr9Q",
+            "explicacion": "Buscamos sentarnos en algo profundo, y con la espalda neutra (no muy curvada), buscamos aguantar 5'' haciendo fuerza para permanece con la espalda neutra y 5'' sentados.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE TOBILLO-PIE",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito A: Empuje + D. rodilla + Core",
+        "items": [
+          {
+            "id": 200,
+            "ejercicio": "Flexiones con pierna inmovilizada post OP",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=4LLQacuq5Ms",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "EXTENSIÓN DE RODILLA",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 49,
+            "ejercicio": "90/90 + zancada overhead",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=OWjRfGz8dj4",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "MOVILIDAD DE CADERA",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Circuito B: Tracción + D. cadera + Core",
+        "items": [
+          {
+            "id": 942,
+            "ejercicio": "Remo monopodal",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=x8oyojlLp7o",
+            "explicacion": "Busco permanecer lo más estable posible, pudiendo poner el pie si me desequilibro para volver a estabilizarme.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CORE",
+            "subcategoria": "GLOBAL/ TRANSMITIR FUERZAS",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 180,
+            "ejercicio": "Hip thrust unilateral + flexión de cadera",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=fU1b0B9Wx0g",
+            "explicacion": "Bajar a tocar con el culete el suelo.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": " MOVILIDAD DE RODILLA",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      },
+      {
+        "tipo": "Finisher Metabólico (opcional)",
+        "items": [
+          {
+            "id": 172,
+            "ejercicio": "Flexión de rodilla 5'' Contracción - 5'' relax",
+            "series": 2,
+            "repeticiones": "20''/40''",
+            "video": "https://www.youtube.com/watch?v=4j7yjQ3SR-8",
+            "explicacion": "Busca sentir tirantez en el cuádriceps",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": " MOVILIDAD DE RODILLA",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 7,
+            "descanso": 0,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          },
+          {
+            "id": 299,
+            "ejercicio": "Foot core (con foco)",
+            "series": 2,
+            "repeticiones": "20''/40''",
+            "video": "https://www.youtube.com/watch?v=J1PXoBVQUxw",
+            "explicacion": "Nos ponemos la cinta, en la zona antes de empezar el dedo gordo y buscamos intentar coger algo del suelo sin que se escape.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "CORRECTIVO",
+            "subcategoria": "PIE-TOBILLO",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 10,
+            "RPE": 7,
+            "descanso": 60,
+            "tempo": "",
+            "superserie": "SSA",
+            "orden": 0
+          }
+        ]
+      }
+    ]
+  },
+  "Domingo": {
+    "dia": "Domingo",
+    "meta": {
+      "titulo": "Recuperación Activa + Movilidad"
+    },
+    "bloques": [
+      {
+        "tipo": "Calentamiento Suave",
+        "items": [
+          {
+            "id": 97,
+            "ejercicio": "PESO MUERTO ASIMÉTRICO CON CONTRACCIÓN ISOMÉTRICA",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=DpWLUKRwqpE",
+            "explicacion": "nan",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 22,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 287,
+            "ejercicio": "Protracción- retracción",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": NaN,
+            "explicacion": "Notaremos en la escápula y en la parte frontal del hombro, no asustarse.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "TEST",
+            "tipo_ejercicio": "Accesorio",
+            "prioridad": 2,
+            "__score": 20,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 95,
+            "ejercicio": "Peso muerto rumano con mancuernas",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=AbnX3TEZJVg",
+            "explicacion": "Bajamos lento, manteniendo la retracción escapular y aguantamos abajo 3''.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 12,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          },
+          {
+            "id": 96,
+            "ejercicio": "Peso muerto rumano",
+            "series": 3,
+            "repeticiones": "8-12",
+            "video": "https://www.youtube.com/watch?v=D4OgbJ369S4",
+            "explicacion": "Bajamos lento, manteniendo la retracción escapular y aguantamos abajo 3''.",
+            "rpe": NaN,
+            "carga utilizada": NaN,
+            "categoria": "MOVILIDAD",
+            "subcategoria": "ISQUIOSURALES",
+            "tipo_ejercicio": "Compuesto",
+            "prioridad": 1,
+            "__score": 12,
+            "RPE": 8,
+            "descanso": 0,
+            "tempo": ""
+          }
+        ]
+      },
+      {
+        "tipo": "Caminar suave",
+        "plan": {
+          "tipo": "Caminar en cinta",
+          "duracion_min": 20,
+          "inclinacion": "1–3%",
+          "ritmo_kmh": "4.5–5.2 km/h",
+          "instrucciones": "Postura erguida, braceo natural. Mantén conversación cómoda."
+        }
+      }
+    ]
+  }
+}
