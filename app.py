@@ -1,12 +1,20 @@
 import streamlit as st
 import pandas as pd
+import inspect, importlib, sys
 from datetime import date, timedelta
 from patterns_bau import PATTERNS
+import planner as _planner_mod
 from planner import plan_semana
 from storage import save_week, load_week, list_weeks, label_from_date, ensure_autogen_today, week_monday
 from objectives import OBJ_PROFILES
 from registro import save_session_log, load_session_log, list_logs, get_exercise_history, suggest_progression
 import time, traceback
+
+# --- diagnóstico de firma en sidebar (se puede quitar cuando funcione) ---
+_sig = str(inspect.signature(plan_semana))
+_file = getattr(_planner_mod, "__file__", "?")
+st.sidebar.caption(f"planner: `{_file}`")
+st.sidebar.caption(f"firma: `plan_semana{_sig}`")
 
 # ===================== CONFIG =====================
 st.set_page_config(layout="wide", page_title="APP GYM David", page_icon="💪")
