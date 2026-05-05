@@ -3,6 +3,31 @@ from __future__ import annotations
 import pandas as pd
 from typing import Dict, Any, List
 
+# --- scoring orientado a objetivo ---
+def _norm_txt(s):
+    from unicodedata import normalize
+    if s is None: return ""
+    t = str(s).lower().strip()
+    t = normalize('NFD', t).encode('ascii', 'ignore').decode('ascii')
+    return t
+
+def _score_row_obj(row, keywords: List[str]) -> int:
+    """Da puntos por presencia de keywords del objetivo."""
+    txt = " ".join([
+        _norm_txt(row.get('categoria')),
+        _norm_txt(row.get('subcategoria')),
+        _norm_txt(row.get('ejercicio'))
+    ])
+    score = 0
+    for kw in keywords or []:
+        if _norm_txt(kw) in txt:
+            score += 10
+    # bonus por compuestos si hay columna tipo_ejercicio
+    te = _norm_txt(row.get('tipo_ejercicio'))
+    if "compuesto" in te: score += 2
+    return score
+
+
 # ---------------- Utilidades internas ----------------
 
 def _norm(s):
@@ -126,13 +151,20 @@ def _fallback(df: pd.DataFrame, regla: Dict[str, Any]) -> pd.DataFrame:
 
 # ---------------- Parámetros / selección ----------------
 
-def _set_params(df: pd.DataFrame, regla: Dict[str, Any], semana: int) -> pd.DataFrame:
+def _set_params(df: pd.DataFrame, regla: Dict[str, Any], semana: int, bloque_tipo: str = "", objetivo_profile: Dict = None) -> pd.DataFrame:
     df = df.copy()
+    # valores base de la regla
     series_rng = regla.get("series", (2,3))
     reps = regla.get("reps", "8-12")
     rpe_rng = regla.get("RPE", (7,8))
 
-    # progresión simple por semana 1–4
+    # overrides por objetivo según tipo de bloque (p.ej. CircuitoPar)
+    if objetivo_profile and objetivo_profile.get("rep_rpe_overrides"):
+        over = objetivo_profile["rep_rpe_overrides"].get(bloque_tipo, {})
+        reps = over.get("reps", reps)
+        rpe_rng = over.get("RPE", rpe_rng)
+
+    # progresión simple
     if semana == 2:
         series = max(series_rng)
         rpe = min(9, rpe_rng[-1])
@@ -154,14 +186,53 @@ def _set_params(df: pd.DataFrame, regla: Dict[str, Any], semana: int) -> pd.Data
         if 'tempo' not in df.columns: df['tempo'] = ""
     return df
 
-def _elegir(df: pd.DataFrame, regla: Dict[str, Any], n: int, semana: int) -> pd.DataFrame:
+
+def _elegir(df: pd.DataFrame, regla: Dict[str, Any], n: int, semana: int,
+            objetivo_profile: Dict = None, used_ids: set | None = None,
+            bloque_tipo: str = "") -> pd.DataFrame:
     cand = _filter(df, regla)
     if len(cand) == 0:
         cand = _fallback(df, regla)
     if len(cand) == 0:
         return cand
-    sel = cand.sample(n=n, random_state=42) if len(cand) > n else cand
-    return _set_params(sel, regla, semana)
+
+    # puntuación por objetivo
+    keywords = (objetivo_profile or {}).get("keywords", [])
+    cand = cand.copy()
+    cand["__score"] = cand.apply(lambda r: _score_row_obj(r, keywords), axis=1)
+
+    # penaliza repetición semanal
+    if used_ids:
+        def _pen(r):
+            try:
+                rid = int(r.get("id"))
+                return -50 if rid in used_ids else 0
+            except Exception:
+                return 0
+        cand["__score"] = cand["__score"] + cand.apply(_pen, axis=1)
+
+    # criterio estable: score desc, prioridad desc (si existe), id asc
+    sort_cols = ["__score"]
+    ascending = [False]
+    if "prioridad" in cand.columns:
+        sort_cols.append("prioridad"); ascending.append(False)
+    if "id" in cand.columns:
+        sort_cols.append("id"); ascending.append(True)
+
+    cand = cand.sort_values(sort_cols, ascending=ascending)
+
+    sel = cand.head(n)
+    # aplica reps/series/RPE con overrides del objetivo si tocan
+    sel = _set_params(sel, regla, semana, bloque_tipo=bloque_tipo, objetivo_profile=objetivo_profile)
+
+    # marca usados
+    if used_ids is not None and "id" in sel.columns:
+        for rid in sel["id"].dropna().tolist():
+            try: used_ids.add(int(rid))
+            except Exception: pass
+
+    return sel
+
 
 # ---------------- Constructores de bloques ----------------
 
@@ -282,8 +353,6 @@ def plan_semana(df: pd.DataFrame, patterns: Dict[str, Any], semana_mesociclo: in
     dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
     return {d: plan_dia(df, patterns, d, semana_mesociclo) for d in dias}
 
-##################################################
-
 # --- añadir al final de planner.py (v4.1) ---
 
 from datetime import datetime, timedelta
@@ -355,3 +424,107 @@ def plan_rango_a_dataframe(df: pd.DataFrame, patterns: Dict[str, Any], start: da
         orden_cols = [c for c in orden_cols if c in out.columns]
         return out[orden_cols]
     return pd.DataFrame()
+
+def _construir_circuito_par(df: pd.DataFrame, regla: Dict[str, Any], semana: int,
+                            objetivo_profile: Dict = None, used_ids: set | None = None) -> pd.DataFrame:
+    parejas = regla.get("parejas", [])
+    series_circuito = int(regla.get("series_circuito", 3))
+    reps = regla.get("reps", "10-12")
+    rpe_rng = regla.get("RPE", (7,8))
+    descanso_entre_ej = int(regla.get("descanso_entre_ej", 0))
+    descanso_entre_series = int(regla.get("descanso_entre_series", 60))
+
+    filas = []
+    nombre_super = ['A','B','C','D','E','F']
+    idx_super = 0
+
+    for par in parejas:
+        if len(par) != 2:
+            continue
+        regla_a, regla_b = par
+        a = _elegir(df, regla_a, 1, semana, objetivo_profile, used_ids, bloque_tipo="CircuitoPar")
+        b = _elegir(df, regla_b, 1, semana, objetivo_profile, used_ids, bloque_tipo="CircuitoPar")
+        if a.empty or b.empty:
+            continue
+        a = a.copy(); b = b.copy()
+        sup_id = f"SS{nombre_super[idx_super % len(nombre_super)]}"
+        idx_super += 1
+        for parte, lado in [(a, '1'), (b, '2')]:
+            # si el objetivo ha ajustado reps/RPE en _set_params, respetamos; si no, forzamos reps del circuito
+            parte['repeticiones'] = reps
+            parte['series'] = series_circuito
+            parte['RPE'] = min(9, rpe_rng[-1] if semana in (2,3) else rpe_rng[0])
+            parte['superserie'] = sup_id
+            parte['descanso'] = descanso_entre_ej if lado == '1' else descanso_entre_series
+            filas.append(parte)
+
+    if not filas:
+        return pd.DataFrame()
+
+    out = pd.concat(filas, ignore_index=True)
+    nums = pd.to_numeric(out['superserie'].astype(str).str.extract(r'(\d+)')[0], errors='coerce').fillna(0)
+    out['orden'] = nums.astype('Int64')
+    out = out.sort_values(['superserie']).reset_index(drop=True)
+    return out
+
+def _bloque_pliometria(df: pd.DataFrame, regla: Dict[str, Any], semana: int,
+                       objetivo_profile: Dict = None, used_ids: set | None = None) -> pd.DataFrame:
+    n = int(regla.get('n', 1))
+    return _elegir(df, {"tipo_ejercicio":"Pliometrico"}, n, semana, objetivo_profile, used_ids, bloque_tipo="Pliometria")
+
+def _bloque_calentamiento(df: pd.DataFrame, regla: Dict[str, Any], semana: int,
+                          objetivo_profile: Dict = None, used_ids: set | None = None) -> pd.DataFrame:
+    base = {
+        "tipo_ejercicio": regla.get("tipo_ejercicio","Movilidad"),
+        "patrones": regla.get("patrones", []),
+        "tags_incluye": regla.get("tags_incluye", ["movilidad"]),
+        "prioridad": regla.get("prioridad", None)
+    }
+    n = int(regla.get("n", 1))
+    sel = _elegir(df, base, n, semana, objetivo_profile, used_ids, bloque_tipo="Calentamiento")
+    if 'descanso' in sel.columns:
+        sel['descanso'] = 0
+    return sel
+
+def construir_bloque(df: pd.DataFrame, nombre: str, regla: Dict[str, Any], semana: int,
+                     objetivo_profile: Dict = None, used_ids: set | None = None):
+    tipo = regla.get("tipo", "")
+    nom_low = nombre.lower()
+    if tipo.lower() == "circuitopar":
+        return {"tipo": nombre, "items": _construir_circuito_par(df, regla, semana, objetivo_profile, used_ids)}
+    if tipo.lower() == "caminar":
+        return {"tipo": nombre, "plan": _bloque_caminar(regla, semana)}
+    if tipo.lower() == "carrera":
+        plan = {"tipo": "Intervalos", "sesion": regla.get("sesion","6x400m Z4 rec 2'"), "indicaciones": "Calienta 10' + Enfría 10'"}
+        return {"tipo": nombre, "plan": plan}
+    if tipo.lower() == "pliometrico":
+        return {"tipo": nombre, "items": _bloque_pliometria(df, regla, semana, objetivo_profile, used_ids)}
+    if nom_low.startswith("calentamiento"):
+        return {"tipo": nombre, "items": _bloque_calentamiento(df, regla, semana, objetivo_profile, used_ids)}
+    items = _elegir(df, regla, int(regla.get('n',1)), semana, objetivo_profile, used_ids, bloque_tipo="Generico")
+    return {"tipo": nombre, "items": items}
+
+def construir_sesion(df: pd.DataFrame, plantilla: Dict[str, Any], semana: int,
+                     objetivo_profile: Dict = None, used_ids: set | None = None):
+    bloques = []
+    reglas = plantilla.get("reglas", {})
+    for bloque in plantilla.get("orden", []):
+        r = reglas.get(bloque, {})
+        bloques.append(construir_bloque(df, bloque, r, semana, objetivo_profile, used_ids))
+    return bloques
+
+def plan_dia(df: pd.DataFrame, patterns: Dict[str, Any], dia: str, semana_mesociclo: int = 1,
+             objetivo_profile: Dict = None, used_ids: set | None = None) -> Dict[str, Any]:
+    p = patterns.get(dia, {})
+    if not p:
+        return {"dia": dia, "bloques": []}
+    return {"dia": dia, "meta": p.get("meta", {}), "bloques": construir_sesion(df, p, semana_mesociclo, objetivo_profile, used_ids)}
+
+def plan_semana(df: pd.DataFrame, patterns: Dict[str, Any], semana_mesociclo: int = 1,
+                objetivo_profile: Dict = None) -> Dict[str, Any]:
+    dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
+    used_week = set() if (objetivo_profile or {}).get("weekly_repeat_penalty", False) else None
+    return {
+        d: plan_dia(df, patterns, d, semana_mesociclo, objetivo_profile, used_week)
+        for d in dias
+    }
