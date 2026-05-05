@@ -230,8 +230,8 @@ for k, v in [("checkin", None), ("plan_sesion", None), ("regen", 0)]:
     if k not in st.session_state: st.session_state[k] = v
 
 # ===================== TABS PRINCIPALES =====================
-tab_ci, tab_sesion, tab_ejercicios, tab_historial = st.tabs([
-    "🏁 Check-in", "💪 Sesión del día", "🔍 Ejercicios", "📊 Historial"
+tab_ci, tab_sesion, tab_semana, tab_ejercicios, tab_historial = st.tabs([
+    "🏁 Check-in", "💪 Sesión del día", "📅 Semana", "🔍 Ejercicios", "📊 Historial"
 ])
 
 # =========================================================
@@ -369,30 +369,38 @@ with tab_sesion:
             })
             st.success("✅ Sesión guardada. Los datos mejorarán tu próxima progresión.")
 
-        # Vista semana completa
-        st.markdown("---")
-        st.markdown("### 📅 Semana completa")
-        plan_sem = plan_s.get("plan_semana", {})
+# =========================================================
+# TAB 3: SEMANA COMPLETA
+# =========================================================
+with tab_semana:
+    ci_s    = st.session_state.get("checkin")
+    plan_s2 = st.session_state.get("plan_sesion")
+    if plan_s2 is None:
+        st.info("👈 Primero completa el **Check-in** para generar el plan semanal.")
+    else:
+        dia_hoy2 = plan_s2["dia"]
+        plan_sem = plan_s2.get("plan_semana", {})
         base_d   = week_monday(date.today())
         dias_sem = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+        st.markdown("### 📅 Semana completa")
         for i, d in enumerate(dias_sem):
             fecha_d = (base_d + timedelta(days=i)).strftime("%d-%m-%Y")
             dd      = plan_sem.get(d, {})
             tt      = (dd.get("meta") or {}).get("titulo", "")
             label_d = f"📅 {d} · {fecha_d}" + (f" · {tt}" if tt else "")
-            with st.expander(label_d, expanded=(d == dia)):
+            with st.expander(label_d, expanded=(d == dia_hoy2)):
                 bls = dd.get("bloques", [])
                 if not bls: st.info("Sin bloques."); continue
                 tabs_d = st.tabs([f"🔹 {b['tipo']}" for b in bls])
                 for td, bd in zip(tabs_d, bls):
                     with td:
                         if "items" in bd:
-                            render_items_cards(bd["items"], key_prefix=f"wk_{d}_{bd['tipo']}", ci=ci)
+                            render_items_cards(bd["items"], key_prefix=f"wk_{d}_{bd['tipo']}", ci=ci_s)
                         elif "plan" in bd:
                             render_plan_info(bd["plan"])
 
 # =========================================================
-# TAB 3: EJERCICIOS
+# TAB 4: EJERCICIOS
 # =========================================================
 with tab_ejercicios:
     st.markdown("### 🔍 Biblioteca de ejercicios")
@@ -430,7 +438,7 @@ with tab_ejercicios:
             render_exercise_card(row, key_prefix=f"lib_s_{i}")
 
 # =========================================================
-# TAB 4: HISTORIAL Y PROGRESIÓN
+# TAB 5: HISTORIAL Y PROGRESIÓN
 # =========================================================
 with tab_historial:
     st.markdown("### 📊 Historial de sesiones")
