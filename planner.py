@@ -367,6 +367,14 @@ def _bloque_calentamiento(df: pd.DataFrame, regla: Dict[str, Any], semana: int,
         sel['descanso'] = 0
     return sel
 
+def _bloque_caminar(regla: Dict[str, Any], semana: int) -> Dict[str, Any]:
+    duracion = regla.get("duracion_min", 20 + semana * 5)
+    return {
+        "duracion_min": duracion,
+        "inclinacion": regla.get("inclinacion", "1-2%"),
+        "ritmo_kmh": regla.get("ritmo_kmh", "5-6"),
+    }
+
 def construir_bloque(df: pd.DataFrame, nombre: str, regla: Dict[str, Any], semana: int,
                      objetivo_profile: Dict = None, used_ids: set | None = None):
     tipo = regla.get("tipo", "")
