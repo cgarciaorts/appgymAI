@@ -281,7 +281,13 @@ with tab_plan:
     MAX32 = (2**32) - 1
     preview_seed = abs(hash((objetivo_nombre, semana, label, "preview"))) % MAX32
     df_preview = df.sample(frac=1, random_state=preview_seed).reset_index(drop=True)
-    plan_preview = plan_semana(df_preview, PATTERNS, semana_mesociclo=semana, objetivo_profile=objetivo_profile)
+    try:
+        plan_preview = plan_semana(df_preview, PATTERNS, semana_mesociclo=semana, objetivo_profile=objetivo_profile)
+    except Exception as _e:
+        import traceback
+        st.error(f"Error generando el plan: {type(_e).__name__}: {_e}")
+        st.code(traceback.format_exc())
+        plan_preview = {d: {"bloques": []} for d in ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]}
 
     dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
 
