@@ -3,7 +3,7 @@ import os, json
 from datetime import date
 from typing import Optional
 
-LOGS_DIR = os.path.join(os.getcwd(), "logs")
+LOGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
 os.makedirs(LOGS_DIR, exist_ok=True)
 
 def _log_path(fecha: str) -> str:

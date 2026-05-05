@@ -4,7 +4,7 @@ from datetime import date, timedelta
 import pandas as pd
 from typing import Any, Tuple, Optional
 
-BASE_DIR = os.path.join(os.getcwd(), "planes")  # o fija a una ruta absoluta si prefieres
+BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "planes")
 os.makedirs(BASE_DIR, exist_ok=True)
 
 def week_monday(d: date) -> date:
@@ -105,6 +105,27 @@ def list_invalid_weeks() -> list[Tuple[str, str]]:
         if err:
             bad.append((label, err))
     return bad
+
+def save_today_session(checkin: dict, seed: int) -> str:
+    """Persiste el checkin + seed del día para regenerar el plan al recargar."""
+    today = date.today().isoformat()
+    path = os.path.join(BASE_DIR, f"session_{today}.json")
+    data = {"checkin": checkin, "seed": seed, "saved_at": today}
+    _atomic_write_json(_to_json_safe(data), path)
+    return path
+
+def load_today_session() -> tuple[Optional[dict], Optional[int]]:
+    """Carga el checkin + seed del día. Devuelve (checkin, seed) o (None, None)."""
+    today = date.today().isoformat()
+    path = os.path.join(BASE_DIR, f"session_{today}.json")
+    if not os.path.exists(path):
+        return None, None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("checkin"), data.get("seed")
+    except Exception:
+        return None, None
 
 def ensure_autogen_today(plan_builder) -> tuple[bool, str | None]:
     """Si hoy es sábado, genera el plan del lunes próximo si no existe."""

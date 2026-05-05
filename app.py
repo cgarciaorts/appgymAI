@@ -1,23 +1,18 @@
 import streamlit as st
 import pandas as pd
-import inspect, importlib, sys
+from PIL import Image
 from datetime import date, timedelta
 from patterns_bau import PATTERNS
-import planner as _planner_mod
 from planner import plan_semana
-from storage import save_week, load_week, list_weeks, label_from_date, ensure_autogen_today, week_monday
+from storage import save_week, load_week, list_weeks, label_from_date, ensure_autogen_today, week_monday, save_today_session, load_today_session
 from objectives import OBJ_PROFILES
 from registro import save_session_log, load_session_log, list_logs, get_exercise_history, suggest_progression
-import time, traceback
-
-# --- diagnóstico de firma en sidebar (se puede quitar cuando funcione) ---
-_sig = str(inspect.signature(plan_semana))
-_file = getattr(_planner_mod, "__file__", "?")
-st.sidebar.caption(f"planner: `{_file}`")
-st.sidebar.caption(f"firma: `plan_semana{_sig}`")
+import os, time, traceback
 
 # ===================== CONFIG =====================
-st.set_page_config(layout="wide", page_title="APP GYM David", page_icon="💪")
+_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
+_page_icon = Image.open(_icon_path) if os.path.exists(_icon_path) else "💪"
+st.set_page_config(layout="wide", page_title="APP GYM David", page_icon=_page_icon)
 
 st.markdown("""<style>
 .card{width:100%;background:#0c1119;border:1px solid #1f2633;border-radius:14px;padding:14px 14px 12px;margin:10px 0 14px;color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.18);}
@@ -37,6 +32,9 @@ st.markdown("""<style>
 .warn-hint{font-size:12px;color:#ffb84d;margin-top:4px;}
 hr.sep{border:0;border-top:1px dashed #273147;margin:10px 0;}
 @media(min-width:760px){.card-title{font-size:20px;}}
+#MainMenu{visibility:hidden;}
+footer{visibility:hidden;}
+header{visibility:hidden;}
 </style>""", unsafe_allow_html=True)
 
 # ===================== CARGA =====================
@@ -229,6 +227,27 @@ def render_plan_info(plan):
 for k, v in [("checkin", None), ("plan_sesion", None), ("regen", 0)]:
     if k not in st.session_state: st.session_state[k] = v
 
+# Auto-recuperar la sesión del día si el navegador fue recargado
+if st.session_state["plan_sesion"] is None:
+    _ci_saved, _seed_saved = load_today_session()
+    if _ci_saved is not None and _seed_saved is not None:
+        try:
+            _obj_profile = OBJ_PROFILES[_ci_saved["objetivo_nombre"]]
+            _df_saved = adaptar_df_por_dolor(
+                df.sample(frac=1, random_state=int(_seed_saved)).reset_index(drop=True),
+                _ci_saved["hombro"], _ci_saved["lumbar"], _ci_saved["rodilla"]
+            )
+            _plan_rec = plan_semana(_df_saved, PATTERNS, semana_mesociclo=int(_ci_saved["semana"]), objetivo_profile=_obj_profile)
+            _dia_rec = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"][date.today().weekday()]
+            st.session_state["plan_sesion"] = {
+                "dia": _dia_rec,
+                "data": _plan_rec[_dia_rec],
+                "plan_semana": _plan_rec
+            }
+            st.session_state["checkin"] = _ci_saved
+        except Exception as _e:
+            st.sidebar.error(f"⚠️ Error recuperando sesión: {_e}")
+
 # ===================== TABS PRINCIPALES =====================
 tab_ci, tab_sesion, tab_semana, tab_ejercicios, tab_historial = st.tabs([
     "🏁 Check-in", "💪 Sesión del día", "📅 Semana", "🔍 Ejercicios", "📊 Historial"
@@ -303,6 +322,7 @@ with tab_ci:
                 "data": plan_completo[dia_hoy],
                 "plan_semana": plan_completo
             }
+            save_today_session(ci_data, seed)
             st.success(f"✅ Sesión generada para **{dia_hoy}** → ve a la pestaña 💪 Sesión del día")
         except Exception as e:
             st.error(f"Error generando sesión: {e}")
