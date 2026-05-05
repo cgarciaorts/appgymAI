@@ -1,4 +1,4 @@
-# planner.py (v4.1) – robusto: _filter/_fallback sin KeyError + fix 'orden' superseries
+# planner.py (v4.2) – objetivo_profile param fix, cache bust
 from __future__ import annotations
 import pandas as pd
 from typing import Dict, Any, List
