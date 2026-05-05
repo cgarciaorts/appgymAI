@@ -1,10 +1,14 @@
+# Falta que guarde no solo por fecha sino tambien por objetivo
+#que cambie las sesiones de una semana a otra por objetivo también
+
 import streamlit as st
 import pandas as pd
-import streamlit.components.v1 as components
 from datetime import date, timedelta
 from patterns_bau import PATTERNS
 from planner import plan_semana
 from storage import save_week, load_week, list_weeks, label_from_date, ensure_autogen_today, week_monday
+from objectives import OBJ_PROFILES
+import time
 
 # --- Config ---
 st.set_page_config(layout="wide", page_title="Planificador Sesiones")
@@ -57,6 +61,8 @@ hr.sep { border:0; border-top:1px dashed #273147; margin:10px 0; }
 """, unsafe_allow_html=True)
 
 st.title("Planificador sesiones")
+if "regen" not in st.session_state:
+    st.session_state["regen"] = 0
 
 # ---------- CARGA DE DATOS ----------
 def cargar_datos():
@@ -171,98 +177,220 @@ def render_plan(plan: dict):
     else:
         st.info(str(plan))
 
+def _render_ejercicio_card(row):
+    titulo = _val(row.get("ejercicio",""))
+    categoria = _val(row.get("categoria",""))
+    subcategoria = _val(row.get("subcategoria",""))
+    tipo = _val(row.get("tipo_ejercicio",""))
+    expl = _val(row.get("explicacion",""))
+    video = _norm_url(row.get("video",""))
+
+    chips = []
+    if categoria: chips.append(f"<span class=\"chip\">{categoria}</span>")
+    if subcategoria: chips.append(f"<span class=\"chip\">{subcategoria}</span>")
+    if tipo: chips.append(f"<span class=\"chip\">{tipo}</span>")
+    meta = f"<div class=\"meta\">{''.join(chips)}</div>" if chips else ""
+    body = f"<div class=\"label\">Explicación</div><p>{expl}</p>" if expl else ""
+    btns = []
+    if video:
+        btns.append(f"<a class=\"btn\" href=\"{video}\" target=\"_blank\" rel=\"noopener\">▶ Ver vídeo</a>")
+    actions = f"<div class=\"actions\">{''.join(btns)}</div>" if btns else ""
+
+    card_html = f"""
+    <div class="card">
+      <div class="card-header">
+        <div class="badge gray">{tipo or 'Ejercicio'}</div>
+      </div>
+      <div class="card-title">{titulo}</div>
+      {meta}
+      {body}
+      {actions}
+    </div>"""
+    st.markdown(card_html, unsafe_allow_html=True)
+
 #  ---------- CARGA ----------
 df = cargar_datos()
 if df.empty:
     st.stop()
 
-# ---------- CONTROLES ----------
-colA, colB, colC, colD = st.columns([1,1,1,2])
-with colA:
-    semana = st.selectbox("Semana", [1,2,3,4], index=0)
-with colB:
-    objetivo_semana = st.selectbox("Plan a generar/guardar", ["Semana actual (desde lunes)","Próxima semana (desde próximo lunes)"], index=0)
-with colC:
-    base_date = week_monday(date.today()) + timedelta(days=7 if objetivo_semana.startswith("Próxima") else 0)
-    label = label_from_date(base_date)
-    st.text_input("Etiqueta (YYYY-MM-DD)", value=label, disabled=True)
-with colD:
-    created, autolabel = ensure_autogen_today(lambda: plan_semana(df, PATTERNS, semana_mesociclo=1))
-    if created:
-        st.success(f"Generado y guardado automáticamente el plan de la semana {autolabel}.")
+# ---------- TABS PRINCIPALES ----------
+tab_plan, tab_ejercicios = st.tabs(["📅 Planificador", "🔍 Ejercicios"])
 
-# ---------- GENERAR / GUARDAR ----------
-if st.button("Generar plan y guardar"):
-    plan = plan_semana(df, PATTERNS, semana_mesociclo=semana)
-    path = save_week(plan, label)
-    st.success(f"Plan guardado: {path}")
+# =========================================================
+# TAB 1: PLANIFICADOR
+# =========================================================
+with tab_plan:
 
-# ---------- VISTA: semana actual (con fecha por día y expanders cerrados) ----------
-st.markdown("---")
-st.markdown("Semana actual")
+    # ---------- CONTROLES ----------
+    from objectives import OBJ_PROFILES
 
-plan_preview = plan_semana(df, PATTERNS, semana_mesociclo=semana)
-dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
+    colA, colB, colC, colD = st.columns([1,1,1,2])
 
-for i, d in enumerate(dias):
-    fecha = (base_date + timedelta(days=i)).strftime("%d-%m-%Y")
-    data = plan_preview[d]
+    with colA:
+        semana = st.selectbox("Semana", [1,2,3,4], index=0)
 
-    # Expander de DÍA (cerrado por defecto)
-    tipo = (data.get("meta") or {}).get("titulo", "")
-    titulo_tipo = f" · {tipo}" if tipo else ""
-    with st.expander(f"📅 {d} · {fecha}{titulo_tipo}", expanded=False):
-    # with st.expander(f"📅 {d} · {fecha}", expanded=False):
-        bloques = data.get("bloques", [])
-        if not bloques:
-            st.info("Sin bloques para este día.")
-            continue
+    with colB:
+        objetivo_nombre = st.selectbox("Objetivo", list(OBJ_PROFILES.keys()), index=0)
+        objetivo_profile = OBJ_PROFILES[objetivo_nombre]
 
-        # Pestañas por bloque (sustituyen al expander anidado)
-        tabs = st.tabs([f"🔹 {b['tipo']}" for b in bloques])
-        for tab, bloque in zip(tabs, bloques):
-            with tab:
-                if "items" in bloque:
-                    render_items_cards(bloque["items"])
-                elif "plan" in bloque:
-                    render_plan(bloque["plan"])
+    with colC:
+        base_date = week_monday(date.today()) + timedelta(
+            days=7 if st.selectbox(
+                "Plan a generar/guardar",
+                ["Semana actual (desde lunes)", "Próxima semana (desde próximo lunes)"],
+                index=0
+            ).startswith("Próxima") else 0
+        )
+        label = label_from_date(base_date)
+        st.text_input("Etiqueta (YYYY-MM-DD)", value=label, disabled=True)
 
-# ---------- HISTORIAL ----------
-st.markdown("### Historial de semanas")
-labels = list_weeks()
-if labels:
-    sel = st.selectbox("Ver semana guardada", labels, index=0)
-    stored = load_week(sel)
+    with colD:
+        daily_seed = int(time.strftime("%Y%m%d"))  # misma semilla por día
+        created, autolabel = ensure_autogen_today(
+            lambda: plan_semana(
+                df.sample(frac=1, random_state=daily_seed).reset_index(drop=True),
+                PATTERNS, semana_mesociclo=1, objetivo_profile=OBJ_PROFILES["General (BAU)"]
+            )
+        )
+        if created:
+            st.success(f"Generado y guardado automáticamente el plan de la semana {autolabel}.")
 
-    # 'sel' es el lunes de esa semana (YYYY-MM-DD)
-    try:
-        from datetime import datetime as _dt
-        base_hist = _dt.strptime(sel, "%Y-%m-%d").date()
-    except Exception:
-        base_hist = week_monday(date.today())
+    # ---------- GENERAR / GUARDAR ----------
+    if st.button("Generar plan y guardar"):
+        st.session_state["regen"] += 1
+        MAX32 = (2**32) - 1
 
-    if stored:
-        dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
-        for i, d in enumerate(dias):
-            fecha = (base_hist + timedelta(days=i)).strftime("%d-%m-%Y")
-            
-            data = stored.get(d, {})
-            tipo = (data.get("meta") or {}).get("titulo", "")
-            titulo_tipo = f" · {tipo}" if tipo else ""
-            with st.expander(f"📅 {d} · {fecha}{titulo_tipo}", expanded=False):
-            # with st.expander(f"📅 {d} · {fecha}", expanded=False):
-                bloques = data.get("bloques", [])
-                if not bloques:
-                    st.info("Sin bloques para este día.")
-                    continue
+        # Semilla siempre dentro de rango
+        seed = int(time.time_ns() + st.session_state["regen"]) % MAX32
 
-                tabs = st.tabs([f"🔹 {b['tipo']}" for b in bloques])
-                for tab, bloque in zip(tabs, bloques):
-                    with tab:
-                        if "items" in bloque and isinstance(bloque["items"], list) and bloque["items"]:
-                            df_items = pd.DataFrame(bloque["items"])
-                            render_items_cards(df_items)
-                        elif "plan" in bloque:
-                            render_plan(bloque["plan"])
-else:
-    st.info("Aún no hay semanas guardadas.")
+        df_shuffled = df.sample(frac=1, random_state=seed).reset_index(drop=True)
+        plan = plan_semana(
+            df_shuffled,
+            PATTERNS,
+            semana_mesociclo=semana,
+            objetivo_profile=objetivo_profile
+        )
+
+        path = save_week(plan, label)
+        st.success(f"Plan guardado: {path} · Objetivo: {objetivo_nombre} · seed={seed}")
+
+    # ---------- VISTA: semana actual ----------
+    st.markdown("---")
+    st.markdown("Semana actual")
+
+    MAX32 = (2**32) - 1
+    preview_seed = abs(hash((objetivo_nombre, semana, label, "preview"))) % MAX32
+    df_preview = df.sample(frac=1, random_state=preview_seed).reset_index(drop=True)
+    plan_preview = plan_semana(df_preview, PATTERNS, semana_mesociclo=semana, objetivo_profile=objetivo_profile)
+
+    dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
+
+    for i, d in enumerate(dias):
+        fecha = (base_date + timedelta(days=i)).strftime("%d-%m-%Y")
+        data = plan_preview[d]
+
+        tipo = (data.get("meta") or {}).get("titulo", "")
+        titulo_tipo = f" · {tipo}" if tipo else ""
+        with st.expander(f"📅 {d} · {fecha}{titulo_tipo}", expanded=False):
+            bloques = data.get("bloques", [])
+            if not bloques:
+                st.info("Sin bloques para este día.")
+                continue
+
+            tabs = st.tabs([f"🔹 {b['tipo']}" for b in bloques])
+            for tab, bloque in zip(tabs, bloques):
+                with tab:
+                    if "items" in bloque:
+                        render_items_cards(bloque["items"])
+                    elif "plan" in bloque:
+                        render_plan(bloque["plan"])
+
+    # ---------- HISTORIAL ----------
+    st.markdown("### Historial de semanas")
+    labels = list_weeks()
+    if labels:
+        sel = st.selectbox("Ver semana guardada", labels, index=0)
+        stored = load_week(sel)
+
+        try:
+            from datetime import datetime as _dt
+            base_hist = _dt.strptime(sel, "%Y-%m-%d").date()
+        except Exception:
+            base_hist = week_monday(date.today())
+
+        if stored:
+            dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
+            for i, d in enumerate(dias):
+                fecha = (base_hist + timedelta(days=i)).strftime("%d-%m-%Y")
+
+                data = stored.get(d, {})
+                tipo = (data.get("meta") or {}).get("titulo", "")
+                titulo_tipo = f" · {tipo}" if tipo else ""
+                with st.expander(f"📅 {d} · {fecha}{titulo_tipo}", expanded=False):
+                    bloques = data.get("bloques", [])
+                    if not bloques:
+                        st.info("Sin bloques para este día.")
+                        continue
+
+                    tabs = st.tabs([f"🔹 {b['tipo']}" for b in bloques])
+                    for tab, bloque in zip(tabs, bloques):
+                        with tab:
+                            if "items" in bloque and isinstance(bloque["items"], list) and bloque["items"]:
+                                df_items = pd.DataFrame(bloque["items"])
+                                render_items_cards(df_items)
+                            elif "plan" in bloque:
+                                render_plan(bloque["plan"])
+    else:
+        st.info("Aún no hay semanas guardadas.")
+
+# =========================================================
+# TAB 2: EJERCICIOS
+# =========================================================
+with tab_ejercicios:
+    st.markdown("### Biblioteca de ejercicios")
+
+    # --- Filtros ---
+    col_search, col_cat, col_tipo = st.columns([3, 2, 2])
+
+    with col_search:
+        buscar = st.text_input("Buscar ejercicio...", placeholder="ej: sentadilla, press banca, remo...")
+
+    with col_cat:
+        cats = sorted([c for c in df["categoria"].dropna().unique()
+                       if str(c).lower() not in ("nan","none","")]) if "categoria" in df.columns else []
+        cat_sel = st.selectbox("Categoría", ["Todas"] + cats)
+
+    with col_tipo:
+        tipos = sorted([t for t in df["tipo_ejercicio"].dropna().unique()
+                        if str(t).lower() not in ("nan","none","")]) if "tipo_ejercicio" in df.columns else []
+        tipo_sel = st.selectbox("Tipo", ["Todos"] + tipos)
+
+    # --- Aplicar filtros ---
+    df_filtrado = df.copy()
+
+    if buscar.strip():
+        mask = df_filtrado["ejercicio"].str.contains(buscar.strip(), case=False, na=False)
+        if "explicacion" in df_filtrado.columns:
+            mask |= df_filtrado["explicacion"].str.contains(buscar.strip(), case=False, na=False)
+        df_filtrado = df_filtrado[mask]
+
+    if cat_sel != "Todas" and "categoria" in df_filtrado.columns:
+        df_filtrado = df_filtrado[df_filtrado["categoria"] == cat_sel]
+
+    if tipo_sel != "Todos" and "tipo_ejercicio" in df_filtrado.columns:
+        df_filtrado = df_filtrado[df_filtrado["tipo_ejercicio"] == tipo_sel]
+
+    st.caption(f"{len(df_filtrado)} ejercicio(s) encontrado(s)")
+
+    if df_filtrado.empty:
+        st.info("No hay ejercicios con esos filtros.")
+    elif "categoria" in df_filtrado.columns and cat_sel == "Todas" and not buscar.strip():
+        # Agrupados por categoría cuando no hay búsqueda activa
+        for cat_name, grupo in df_filtrado.groupby("categoria", sort=True):
+            if str(cat_name).lower() in ("nan","none",""): continue
+            with st.expander(f"📂 {cat_name}  ({len(grupo)})", expanded=False):
+                for _, row in grupo.fillna("").iterrows():
+                    _render_ejercicio_card(row)
+    else:
+        for _, row in df_filtrado.fillna("").iterrows():
+            _render_ejercicio_card(row)
